@@ -1,0 +1,23 @@
+#dashboard {
+  display: grid;
+  height: 100vh;
+  grid-template-areas: "sidebar map"
+                       "sidebar events";
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 400px 1fr;
+}
+
+#cameras-container {
+  background: lightsalmon;
+  grid-area: sidebar;
+}
+
+#map-container {
+  background: lightcoral;
+  grid-area: map;
+}
+
+#events-container {
+  background: lightgray;
+  grid-area: events;
+}

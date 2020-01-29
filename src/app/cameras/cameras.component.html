@@ -1,1 +1,15 @@
-<p>cameras works!</p>
+<mat-nav-list *ngIf="cameras$ | async as cameras; else loading">
+  <h3 matSubheader>
+    Cameras
+    <button mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+  </h3>
+  <mat-list-item *ngFor="let camera of cameras">
+    <app-camera [camera]="camera"></app-camera>
+  </mat-list-item>
+</mat-nav-list>
+
+<ng-template #loading>
+  No cameras found. You can add a camera via 'add camera' button.
+</ng-template>
