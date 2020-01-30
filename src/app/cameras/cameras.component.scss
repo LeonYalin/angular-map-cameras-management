@@ -1,0 +1,23 @@
+#cameras {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.add-camera-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+  padding: 20px;
+}
+

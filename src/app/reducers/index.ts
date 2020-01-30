@@ -11,14 +11,14 @@ import * as fromMap from '../map/map.reducer';
 import * as fromEvents from '../events/events.reducer';
 
 
-export interface State {
+export interface AppState {
 
   [fromCameras.camerasFeatureKey]: fromCameras.State;
   [fromMap.mapFeatureKey]: fromMap.State;
   [fromEvents.eventsFeatureKey]: fromEvents.State;
 }
 
-export const reducers: ActionReducerMap<State> = {
+export const reducers: ActionReducerMap<AppState> = {
 
   [fromCameras.camerasFeatureKey]: fromCameras.reducer,
   [fromMap.mapFeatureKey]: fromMap.reducer,
@@ -26,4 +26,4 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];

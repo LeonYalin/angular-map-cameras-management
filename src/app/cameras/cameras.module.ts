@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CamerasComponent } from './cameras.component';
 import { CameraComponent } from './camera/camera.component';
 import { MatListModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { EffectsModule } from '@ngrx/effects';
+import { CamerasEffects } from './cameras.effects';
 
 
 @NgModule({
@@ -12,6 +14,7 @@ import { MatListModule, MatIconModule, MatButtonModule } from '@angular/material
     MatListModule,
     MatButtonModule,
     MatIconModule,
+    EffectsModule.forFeature([CamerasEffects]),
   ],
   exports: [CamerasComponent]
 })

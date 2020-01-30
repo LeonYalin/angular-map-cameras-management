@@ -1,24 +1,25 @@
 import { Action } from '@ngrx/store';
+import Camera from './models/camera';
 
 export enum CamerasActionTypes {
-  LoadCamerass = '[Cameras] Load Camerass',
-  LoadCamerassSuccess = '[Cameras] Load Camerass Success',
-  LoadCamerassFailure = '[Cameras] Load Camerass Failure',
+  LoadCameras = '[Cameras] Load Cameras',
+  LoadCamerasSuccess = '[Cameras] Load Cameras Success',
+  LoadCamerasFailure = '[Cameras] Load Cameras Failure',
 }
 
-export class LoadCamerass implements Action {
-  readonly type = CamerasActionTypes.LoadCamerass;
+export class LoadCameras implements Action {
+  readonly type = CamerasActionTypes.LoadCameras;
 }
 
-export class LoadCamerassSuccess implements Action {
-  readonly type = CamerasActionTypes.LoadCamerassSuccess;
-  constructor(public payload: { data: any }) { }
+export class LoadCamerasSuccess implements Action {
+  readonly type = CamerasActionTypes.LoadCamerasSuccess;
+  constructor(public payload: { cameras: Camera[] }) { }
 }
 
-export class LoadCamerassFailure implements Action {
-  readonly type = CamerasActionTypes.LoadCamerassFailure;
-  constructor(public payload: { error: any }) { }
+export class LoadCamerasFailure implements Action {
+  readonly type = CamerasActionTypes.LoadCamerasFailure;
+  constructor(public payload: { error: string }) { }
 }
 
-export type CamerasActions = LoadCamerass | LoadCamerassSuccess | LoadCamerassFailure;
+export type CamerasActions = LoadCameras | LoadCamerasSuccess | LoadCamerasFailure;
 

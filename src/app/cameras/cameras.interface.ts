@@ -1,6 +1,6 @@
-export interface Position {
-  lat: string,
-  lon: string,
+export interface GeoLocation {
+  lat: number,
+  lon: number,
 }
 
 export enum EventTypes {

@@ -1,15 +1,21 @@
-<mat-nav-list *ngIf="cameras$ | async as cameras; else loading">
-  <h3 matSubheader>
-    Cameras
+<div id="cameras">
+  <div class="add-camera-block">
+    <span>Cameras</span>
     <button mat-icon-button>
       <mat-icon>add</mat-icon>
     </button>
-  </h3>
-  <mat-list-item *ngFor="let camera of cameras">
-    <app-camera [camera]="camera"></app-camera>
-  </mat-list-item>
-</mat-nav-list>
+  </div>
 
-<ng-template #loading>
-  No cameras found. You can add a camera via 'add camera' button.
-</ng-template>
+  <mat-nav-list *ngIf="cameras$ | async as cameras; else loading">
+    <ng-container *ngFor="let camera of cameras">
+      <app-camera [camera]="camera"></app-camera>
+    </ng-container>
+  </mat-nav-list>
+
+  <ng-template #loading>
+    <div class="empty-state">
+      No cameras found.<br>
+      You can add a camera via the 'add camera' button.
+    </div>
+  </ng-template>
+</div>
