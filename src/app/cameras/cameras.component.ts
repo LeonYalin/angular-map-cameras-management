@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import Camera from './models/camera';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../reducers';
-import { LoadCameras } from './cameras.actions';
+import { LoadCameras, OpenAddCamerasDialog } from './cameras.actions';
 import * as fromCameras from './cameras.reducer';
 
 @Component({
@@ -23,4 +23,7 @@ export class CamerasComponent implements OnInit {
     this.store.dispatch(new LoadCameras());
   }
 
+  onAddCameraBtnClick() {
+    this.store.dispatch(new OpenAddCamerasDialog());
+  }
 }

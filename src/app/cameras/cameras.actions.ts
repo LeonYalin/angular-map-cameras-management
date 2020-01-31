@@ -5,6 +5,9 @@ export enum CamerasActionTypes {
   LoadCameras = '[Cameras] Load Cameras',
   LoadCamerasSuccess = '[Cameras] Load Cameras Success',
   LoadCamerasFailure = '[Cameras] Load Cameras Failure',
+  OpenAddCameraDialog = '[Cameras] Open Add Cameras Dialog',
+  CloseAddCamerasDialogSuccess = '[Cameras] Close Add Cameras Dialog Success',
+  CloseAddCamerasDialogFailure = '[Cameras] Close Add Cameras Dialog Failure',
 }
 
 export class LoadCameras implements Action {
@@ -21,5 +24,19 @@ export class LoadCamerasFailure implements Action {
   constructor(public payload: { error: string }) { }
 }
 
-export type CamerasActions = LoadCameras | LoadCamerasSuccess | LoadCamerasFailure;
+export class OpenAddCamerasDialog implements Action {
+  readonly type = CamerasActionTypes.OpenAddCameraDialog;
+}
+
+export class CloseAddCamerasDialogSuccess implements Action {
+  readonly type = CamerasActionTypes.CloseAddCamerasDialogSuccess;
+  constructor(public payload: { camera: Camera }) { }
+}
+
+export class CloseAddCamerasDialogFailure implements Action {
+  readonly type = CamerasActionTypes.CloseAddCamerasDialogFailure;
+}
+
+export type CamerasActions = LoadCameras | LoadCamerasSuccess | LoadCamerasFailure | OpenAddCamerasDialog |
+  CloseAddCamerasDialogSuccess | CloseAddCamerasDialogFailure;
 
