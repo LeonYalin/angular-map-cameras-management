@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
 import Camera from './models/camera';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../reducers';
 import { LoadCameras, OpenAddCamerasDialog, SetSelectedCamera } from './cameras.actions';
 import * as fromCameras from './cameras.reducer';
+import { CamerasService } from './cameras.service';
 
 @Component({
   selector: 'app-cameras',
@@ -17,7 +17,7 @@ export class CamerasComponent implements OnInit {
   selectedCamera$ = this.store.pipe(select(fromCameras.selectSelectedCamera));
   selectedCameraId: string;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private camerasService: CamerasService) {
     this.selectedCamera$.subscribe(camera => this.selectedCameraId = camera ? camera.id : undefined);
   }
 
@@ -31,6 +31,7 @@ export class CamerasComponent implements OnInit {
 
   onItemClick(camera: Camera) {
     this.store.dispatch(new SetSelectedCamera({ camera }));
+    this.camerasService.startTimer(camera);
   }
 
   isSelected(camera: Camera) {

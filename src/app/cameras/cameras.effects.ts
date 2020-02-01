@@ -15,7 +15,7 @@ export class CamerasEffects {
   loadCameras$ = this.actions$.pipe(
     ofType(CamerasActionTypes.LoadCameras),
     map(() => this.camerasService.loadCameras()),
-    switchMap(cameras => of(new LoadCamerasSuccess({cameras}))),
+    switchMap(cameras => of(new LoadCamerasSuccess({ cameras }))),
   );
 
   @Effect()
@@ -29,11 +29,17 @@ export class CamerasEffects {
       if (result === undefined) {
         return new CloseAddCamerasDialogFailure();
       } else {
-        return new CloseAddCamerasDialogSuccess({camera: result});
+        return new CloseAddCamerasDialogSuccess({ camera: result });
       }
     })
   );
 
-  constructor(private actions$: Actions, private camerasService: CamerasService, private dialog: MatDialog) {}
+  @Effect({ dispatch: false })
+  startEmitingCameraEvents$ = this.actions$.pipe(
+    ofType(CamerasActionTypes.StartEmitingCameraEvents),
+    tap(action => this.camerasService.startTimer(action.paylo))
+  )
+
+  constructor(private actions$: Actions, private camerasService: CamerasService, private dialog: MatDialog) { }
 
 }

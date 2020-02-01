@@ -44,6 +44,12 @@ export class SetSelectedCamera implements Action {
   constructor(public payload: { camera: Camera }) { }
 }
 
-export type CamerasActions = LoadCameras | LoadCamerasSuccess | LoadCamerasFailure | OpenAddCamerasDialog |
-  CloseAddCamerasDialogSuccess | CloseAddCamerasDialogFailure | SetSelectedCamera;
+export type CamerasActions =
+  LoadCameras |
+  LoadCamerasSuccess |
+  LoadCamerasFailure |
+  OpenAddCamerasDialog |
+  CloseAddCamerasDialogSuccess |
+  CloseAddCamerasDialogFailure |
+  SetSelectedCamera;
 
