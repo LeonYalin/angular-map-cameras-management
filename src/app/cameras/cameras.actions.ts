@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import Camera from './models/camera';
+import { CamerasMap } from './cameras.interface';
 
 export enum CamerasActionTypes {
   LoadCameras = '[Cameras] Load Cameras',
@@ -8,6 +9,7 @@ export enum CamerasActionTypes {
   OpenAddCameraDialog = '[Cameras] Open Add Cameras Dialog',
   CloseAddCamerasDialogSuccess = '[Cameras] Close Add Cameras Dialog Success',
   CloseAddCamerasDialogFailure = '[Cameras] Close Add Cameras Dialog Failure',
+  SetSelectedCamera = '[Cameras] Set Selected Camera',
 }
 
 export class LoadCameras implements Action {
@@ -16,7 +18,7 @@ export class LoadCameras implements Action {
 
 export class LoadCamerasSuccess implements Action {
   readonly type = CamerasActionTypes.LoadCamerasSuccess;
-  constructor(public payload: { cameras: Camera[] }) { }
+  constructor(public payload: { cameras: CamerasMap }) { }
 }
 
 export class LoadCamerasFailure implements Action {
@@ -37,6 +39,11 @@ export class CloseAddCamerasDialogFailure implements Action {
   readonly type = CamerasActionTypes.CloseAddCamerasDialogFailure;
 }
 
+export class SetSelectedCamera implements Action {
+  readonly type = CamerasActionTypes.SetSelectedCamera;
+  constructor(public payload: { camera: Camera }) { }
+}
+
 export type CamerasActions = LoadCameras | LoadCamerasSuccess | LoadCamerasFailure | OpenAddCamerasDialog |
-  CloseAddCamerasDialogSuccess | CloseAddCamerasDialogFailure;
+  CloseAddCamerasDialogSuccess | CloseAddCamerasDialogFailure | SetSelectedCamera;
 

@@ -1,9 +1,11 @@
 import { GeoLocation } from '../cameras.interface';
+import { generateUUID } from './utils';
 
 export default class Camera {
-  id: number;
+  id: string;
+  selected = false;
 
   constructor(public name: string, public position: GeoLocation) {
-    this.id = new Date().getTime();
+    this.id = generateUUID();
   }
 }

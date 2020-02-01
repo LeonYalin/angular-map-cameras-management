@@ -1,4 +1,4 @@
-<mat-list-item>
+<mat-list-item (click)="onItemClick()" [ngClass]="{'selected': selected}">
   <mat-icon mat-list-icon>camera_alt</mat-icon>
   {{camera.name}}
 </mat-list-item>

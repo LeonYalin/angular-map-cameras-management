@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import Camera from './models/camera';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../reducers';
-import { LoadCameras, OpenAddCamerasDialog } from './cameras.actions';
+import { LoadCameras, OpenAddCamerasDialog, SetSelectedCamera } from './cameras.actions';
 import * as fromCameras from './cameras.reducer';
 
 @Component({
@@ -13,10 +13,12 @@ import * as fromCameras from './cameras.reducer';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CamerasComponent implements OnInit {
-  cameras$: Observable<Camera[]>;
+  cameras$ = this.store.pipe(select(fromCameras.selectCameras));
+  selectedCamera$ = this.store.pipe(select(fromCameras.selectSelectedCamera));
+  selectedCameraId: string;
 
   constructor(private store: Store<AppState>) {
-    this.cameras$ = this.store.pipe(select(fromCameras.selectCameras));
+    this.selectedCamera$.subscribe(camera => this.selectedCameraId = camera ? camera.id : undefined);
   }
 
   ngOnInit() {
@@ -25,5 +27,13 @@ export class CamerasComponent implements OnInit {
 
   onAddCameraBtnClick() {
     this.store.dispatch(new OpenAddCamerasDialog());
+  }
+
+  onItemClick(camera: Camera) {
+    this.store.dispatch(new SetSelectedCamera({ camera }));
+  }
+
+  isSelected(camera: Camera) {
+    return camera.id === this.selectedCameraId;
   }
 }

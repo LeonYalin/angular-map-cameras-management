@@ -3,11 +3,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Camera from '../models/camera';
 
+interface FormValue {
+  name: string;
+  lat: number;
+  lon: number;
+}
+
 @Component({
   selector: 'app-add-camera-dialog',
   styleUrls: ['./add-camera-dialog.component.scss'],
   template: `
-    <form novalidate [formGroup]="form">
+    <form novalidate [formGroup]="form" (ngSubmit)="ok()">
       <div class="dialog-content-wrapper" mat-dialog-content>
         <h1 mat-dialog-title>Add a new camera</h1>
         <mat-form-field>
@@ -28,7 +34,7 @@ import Camera from '../models/camera';
       </div>
       <div class="dialog-actions-wrapper" mat-dialog-actions>
         <button mat-raised-button (click)="cancel()">Cancel</button>
-        <button mat-raised-button color="primary" (click)="ok()" [disabled]="!form.valid">Ok</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">Ok</button>
       </div>
     </form>
   `
@@ -54,8 +60,11 @@ export class AddCameraDialogComponent implements OnInit {
   }
 
   ok() {
-    const formVal = this.form.getRawValue();
-    const camera = new Camera(formVal.name, {lat: parseInt(formVal['lat'], 10), lon: parseInt(formVal['lon'], 10) });
+    const { name, lat, lon } = this.form.getRawValue() as FormValue;
+    if (!this.form.valid) {
+      return this.cancel();
+    }
+    const camera = new Camera(name, { lat, lon });
     this.dialogRef.close(camera);
   }
 

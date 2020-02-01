@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import Camera from '../models/camera';
 
 @Component({
@@ -8,9 +8,14 @@ import Camera from '../models/camera';
 })
 export class CameraComponent implements OnInit {
   @Input() camera: Camera;
+  @Input() selected: boolean;
+  @Output() itemClick = new EventEmitter<Camera>();
   constructor() { }
 
   ngOnInit() {
   }
 
+  onItemClick() {
+    this.itemClick.emit(this.camera);
+  }
 }
