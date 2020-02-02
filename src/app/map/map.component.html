@@ -1,3 +1,14 @@
 <div id="map">
-  
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+    <agm-marker *ngFor="let item of markers$ | async | keyvalue"
+      (markerClick)="onMarkerClick(item.value)"
+      [latitude]="item.value.position.lat"
+      [longitude]="item.value.position.lon">
+
+      <!-- <agm-info-window>
+        <strong>InfoWindow content</strong>
+      </agm-info-window> -->
+
+    </agm-marker>
+  </agm-map>
 </div>

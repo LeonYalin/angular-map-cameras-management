@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AppRoutingModule } from './app-routing.module';
 import { EffectsModule } from '@ngrx/effects';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,10 @@ import { EffectsModule } from '@ngrx/effects';
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
-    DashboardModule
+    DashboardModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAs1pir-TIrZOXESat3qHSJc3buSKU56k8',
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
