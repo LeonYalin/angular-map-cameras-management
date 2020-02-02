@@ -3,8 +3,6 @@ import { cloneDeep } from 'lodash';
 import { initialCameras } from '../cameras/cameras.stub';
 import { normalize } from './dashboard.utils';
 import { CamerasMap } from '../cameras/cameras.interface';
-import { Observable, timer, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import Camera from '../cameras/models/camera';
 import { Store } from '@ngrx/store';
 import { AppState } from '../reducers';
@@ -26,16 +24,15 @@ export class DashboardService {
   }
 
   startTimer(camera: Camera) {
+    this.stopTimer();
     this.interval = setInterval(() => {
       const cameraEvent = this.generateCameraEvent(camera);
       this.store.dispatch(new AddCameraEvent({ cameraEvent }));
     }, 5000);
-    // this.timer$ = timer(1000).pipe(takeUntil(this.stopTimer$));
   }
 
   stopTimer() {
     clearInterval(this.interval);
-    // this.stopTimer$.next();
   }
 
   generateCameraEvent(camera: Camera): CameraEvent {
@@ -46,7 +43,7 @@ export class DashboardService {
   }
 
   getRandomNum(min, max) {
-    return Math.random() * (max - min) + min;
+    return (Math.random() * (max - min) + min).toFixed(2);
   }
 
   getRandomInt(min, max) {
@@ -57,7 +54,7 @@ export class DashboardService {
 
   getRandomType(): CameraEventTypes {
     const keys = Object.keys(CameraEventTypes);
-    const randomPos = this.getRandomInt(0, keys.length - 1);
+    const randomPos = this.getRandomInt(0, keys.length);
     return CameraEventTypes[keys[randomPos]];
   }
 }

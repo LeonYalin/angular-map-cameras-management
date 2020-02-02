@@ -2,10 +2,12 @@ import { Action } from '@ngrx/store';
 import CameraEvent from './models/camera-event';
 
 export enum CameraEventsActionTypes {
-  LoadCameraEvents = '[Events] Load Eventss',
-  LoadCameraEventsSuccess = '[Events] Load Eventss Success',
-  LoadCameraEventsFailure = '[Events] Load Eventss Failure',
-  AddCameraEvent = '[Events] Add Camera Event',
+  LoadCameraEvents = '[CameraEvents] Load Events',
+  LoadCameraEventsSuccess = '[CameraEvents] Load Events Success',
+  LoadCameraEventsFailure = '[CameraEvents] Load Events Failure',
+  AddCameraEvent = '[CameraEvents] Add Camera Event',
+  SetSelectedCameraEvent = '[CameraEvents] Set Selected Camera Event',
+  ClearCameraEvents = '[CameraEvents] Clear Camera Events',
 }
 
 export class LoadCameraEvents implements Action {
@@ -27,9 +29,20 @@ export class AddCameraEvent implements Action {
   constructor(public payload: { cameraEvent: CameraEvent }) { }
 }
 
+export class SetSelectedCameraEvent implements Action {
+  readonly type = CameraEventsActionTypes.SetSelectedCameraEvent;
+  constructor(public payload: { cameraEvent: CameraEvent }) { }
+}
+
+export class ClearCameraEvents implements Action {
+  readonly type = CameraEventsActionTypes.ClearCameraEvents;
+}
+
 export type CameraEventsActions =
   LoadCameraEvents |
   LoadCameraEventsSuccess |
   LoadCameraEventsFailure |
-  AddCameraEvent;
+  AddCameraEvent |
+  SetSelectedCameraEvent |
+  ClearCameraEvents;
 

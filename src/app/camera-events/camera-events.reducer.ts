@@ -13,8 +13,8 @@ export interface State {
 }
 
 export const initialState: State = {
-  cameraEvents: {},
-  selectedCameraEventId :null,
+  cameraEvents: null,
+  selectedCameraEventId: null,
 };
 
 export function reducer(state = initialState, action: CameraEventsActions): State {
@@ -25,6 +25,16 @@ export function reducer(state = initialState, action: CameraEventsActions): Stat
           ...state.cameraEvents,
           [action.payload.cameraEvent.id]: action.payload.cameraEvent,
         }
+      }
+    case CameraEventsActionTypes.SetSelectedCameraEvent:
+      return {
+        ...state,
+        selectedCameraEventId: action.payload.cameraEvent.id,
+      }
+    case CameraEventsActionTypes.ClearCameraEvents:
+      return {
+        ...state,
+        cameraEvents: null,
       }
     default:
       return state;
@@ -38,5 +48,5 @@ export const selectCameraEvents = createSelector(
 );
 export const selectSelectedCameraEvent = createSelector(
   cameraEventsFeatureSelector,
-  (state: State) => state.cameraEvents[state.selectedCameraEventId],
+  (state: State) => state.cameraEvents ? state.cameraEvents[state.selectedCameraEventId] : null,
 );

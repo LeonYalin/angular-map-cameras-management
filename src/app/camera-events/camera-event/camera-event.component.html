@@ -1,0 +1,8 @@
+<mat-list-item (click)="onItemClick()" [ngClass]="{'selected': selected}">
+  <mat-icon mat-list-icon>{{itemIcon}}</mat-icon>
+  <div class="item-data-piece">{{item.type}}</div>
+  <div class="item-data-piece">lat:{{item.position.lat}},</div>
+  <div class="item-data-piece">lon:{{item.position.lon}},</div>
+  <div class="item-data-piece">{{item.timestamp | date:'shortTime'}}</div>
+</mat-list-item>
+<mat-divider></mat-divider>

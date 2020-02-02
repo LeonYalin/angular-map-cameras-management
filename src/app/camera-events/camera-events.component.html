@@ -1,1 +1,16 @@
-<p>events works!</p>
+<div id="camera-events">
+  <mat-list *ngIf="cameraEvents$ | async as cameraEvents; else loading">
+    <ng-container *ngFor="let item of cameraEvents | keyvalue">
+      <app-camera-event [item]="item.value" [selected]="isSelected(item.value)" (itemClick)="onItemClick($event)">
+      </app-camera-event>
+    </ng-container>
+  </mat-list>
+
+  <ng-template #loading>
+    <div class="empty-state">
+      No camera events found.<br>
+      Camera events will start to appear after selecting a camera from the list.
+    </div>
+  </ng-template>
+</div>
+

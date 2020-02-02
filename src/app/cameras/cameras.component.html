@@ -8,7 +8,7 @@
 
   <mat-nav-list *ngIf="cameras$ | async as cameras; else loading">
     <ng-container *ngFor="let item of cameras | keyvalue">
-      <app-camera [camera]="item.value" [selected]="isSelected(item.value)" (itemClick)="onItemClick($event)"></app-camera>
+      <app-camera [item]="item.value" [selected]="isSelected(item.value)" (itemClick)="onItemClick($event)"></app-camera>
     </ng-container>
   </mat-nav-list>
 

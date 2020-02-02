@@ -7,7 +7,7 @@ import Camera from '../models/camera';
   styleUrls: ['./camera.component.scss']
 })
 export class CameraComponent implements OnInit {
-  @Input() camera: Camera;
+  @Input() item: Camera;
   @Input() selected: boolean;
   @Output() itemClick = new EventEmitter<Camera>();
   constructor() { }
@@ -16,6 +16,6 @@ export class CameraComponent implements OnInit {
   }
 
   onItemClick() {
-    this.itemClick.emit(this.camera);
+    this.itemClick.emit(this.item);
   }
 }

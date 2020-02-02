@@ -1,6 +1,7 @@
 #dashboard {
   display: grid;
   height: 100vh;
+  overflow: hidden;
   grid-template-areas: "sidebar map"
                        "sidebar events";
   grid-template-columns: 300px 1fr;
@@ -17,6 +18,6 @@
 }
 
 #events-container {
-  background: lightgray;
   grid-area: events;
+  overflow: hidden;
 }

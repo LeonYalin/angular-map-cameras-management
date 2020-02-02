@@ -7,5 +7,5 @@ export interface CameraEventsMap {
 export enum CameraEventTypes {
   Accident = "Accident",
   Demonstration = "Demonstration",
-  SuspiciousObject = "Suspicious object",
+  SuspiciousObject = "SuspiciousObject",
 }

@@ -12,7 +12,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  cameras: {},
+  cameras: null,
   selectedCameraId: null,
 };
 
@@ -43,5 +43,5 @@ export const selectCameras = createSelector(
 );
 export const selectSelectedCamera = createSelector(
   camerasFeatureSelector,
-  (state: State) => state.cameras[state.selectedCameraId],
+  (state: State) => state.cameras ? state.cameras[state.selectedCameraId] : null,
 );

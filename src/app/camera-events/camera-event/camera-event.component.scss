@@ -1,0 +1,10 @@
+mat-list-item {
+  background: white;
+  &.selected {
+    color:#ff4081;
+  }
+}
+
+.item-data-piece {
+  margin-right: 10px;
+}
