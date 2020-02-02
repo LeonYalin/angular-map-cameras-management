@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
-import CameraEvent from '../cameras/models/camera-event';
+import CameraEvent from './models/camera-event';
 
 @Component({
   selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss'],
+  templateUrl: './camera-events.component.html',
+  styleUrls: ['./camera-events.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventsComponent implements OnInit {
+export class CameraEventsComponent implements OnInit {
   events$: Observable<CameraEvent[]>;
 
   constructor() { }

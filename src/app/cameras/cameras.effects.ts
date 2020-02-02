@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { CamerasService } from './cameras.service';
-import { CamerasActionTypes, LoadCamerasSuccess, CloseAddCamerasDialogSuccess, CloseAddCamerasDialogFailure } from './cameras.actions';
+import { DashboardService } from '../dashboard/dashboard.service';
+import { CamerasActionTypes, LoadCamerasSuccess, AddCamera, CloseAddCamerasDialogFailure } from './cameras.actions';
 import { switchMap, catchError, map, tap, exhaustMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MatDialog } from '@angular/material';
@@ -14,7 +14,7 @@ export class CamerasEffects {
   @Effect()
   loadCameras$ = this.actions$.pipe(
     ofType(CamerasActionTypes.LoadCameras),
-    map(() => this.camerasService.loadCameras()),
+    map(() => this.dashboardService.loadCameras()),
     switchMap(cameras => of(new LoadCamerasSuccess({ cameras }))),
   );
 
@@ -29,17 +29,11 @@ export class CamerasEffects {
       if (result === undefined) {
         return new CloseAddCamerasDialogFailure();
       } else {
-        return new CloseAddCamerasDialogSuccess({ camera: result });
+        return new AddCamera({ camera: result });
       }
     })
   );
 
-  @Effect({ dispatch: false })
-  startEmitingCameraEvents$ = this.actions$.pipe(
-    ofType(CamerasActionTypes.StartEmitingCameraEvents),
-    tap(action => this.camerasService.startTimer(action.paylo))
-  )
-
-  constructor(private actions$: Actions, private camerasService: CamerasService, private dialog: MatDialog) { }
+  constructor(private actions$: Actions, private dashboardService: DashboardService, private dialog: MatDialog) { }
 
 }

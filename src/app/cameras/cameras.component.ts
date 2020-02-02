@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from '../reducers';
 import { LoadCameras, OpenAddCamerasDialog, SetSelectedCamera } from './cameras.actions';
 import * as fromCameras from './cameras.reducer';
-import { CamerasService } from './cameras.service';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 @Component({
   selector: 'app-cameras',
@@ -17,7 +17,7 @@ export class CamerasComponent implements OnInit {
   selectedCamera$ = this.store.pipe(select(fromCameras.selectSelectedCamera));
   selectedCameraId: string;
 
-  constructor(private store: Store<AppState>, private camerasService: CamerasService) {
+  constructor(private store: Store<AppState>, private camerasService: DashboardService) {
     this.selectedCamera$.subscribe(camera => this.selectedCameraId = camera ? camera.id : undefined);
   }
 

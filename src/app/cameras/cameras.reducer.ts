@@ -20,7 +20,7 @@ export function reducer(state = initialState, action: CamerasActions): State {
   switch (action.type) {
     case CamerasActionTypes.LoadCamerasSuccess:
       return { ...state, cameras: action.payload.cameras };
-    case CamerasActionTypes.CloseAddCamerasDialogSuccess:
+    case CamerasActionTypes.AddCamera:
       return { ...state, cameras: {
           ...state.cameras,
           [action.payload.camera.id]: action.payload.camera

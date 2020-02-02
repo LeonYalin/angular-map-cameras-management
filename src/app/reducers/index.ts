@@ -8,21 +8,21 @@ import {
 import { environment } from '../../environments/environment';
 import * as fromCameras from '../cameras/cameras.reducer';
 import * as fromMap from '../map/map.reducer';
-import * as fromEvents from '../events/events.reducer';
+import * as fromEvents from '../camera-events/camera-events.reducer';
 
 
 export interface AppState {
 
   [fromCameras.camerasFeatureKey]: fromCameras.State;
   [fromMap.mapFeatureKey]: fromMap.State;
-  [fromEvents.eventsFeatureKey]: fromEvents.State;
+  [fromEvents.cameraEventsFeatureKey]: fromEvents.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
 
   [fromCameras.camerasFeatureKey]: fromCameras.reducer,
   [fromMap.mapFeatureKey]: fromMap.reducer,
-  [fromEvents.eventsFeatureKey]: fromEvents.reducer,
+  [fromEvents.cameraEventsFeatureKey]: fromEvents.reducer,
 };
 
 

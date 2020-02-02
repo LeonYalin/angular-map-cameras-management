@@ -8,9 +8,3 @@ export interface GeoLocation {
 export interface CamerasMap {
   [key: string]: Camera;
 }
-
-export enum EventTypes {
-  Accident = "Accident",
-  Demonstration = "Demonstration",
-  SuspiciousObject = "Suspicious object",
-}

@@ -1,5 +1,5 @@
 import { GeoLocation } from '../cameras.interface';
-import { generateUUID } from './utils';
+import { generateUUID } from '../../dashboard/dashboard.utils';
 
 export default class Camera {
   id: string;
