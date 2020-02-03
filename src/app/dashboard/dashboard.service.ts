@@ -19,8 +19,8 @@ export class DashboardService {
 
   constructor(private store: Store<AppState>) { }
 
-  loadCameras(): CamerasMap {
-    return cloneDeep(normalize(initialCameras));
+  loadCameras(): Camera[] {
+    return cloneDeep(initialCameras);
   }
 
   startTimer(camera: Camera) {

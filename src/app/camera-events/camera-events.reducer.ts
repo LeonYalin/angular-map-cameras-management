@@ -8,23 +8,23 @@ import { AppState } from '../reducers';
 export const cameraEventsFeatureKey = 'cameraEvents';
 
 export interface State {
-  cameraEvents: CameraEventsMap,
+  cameraEvents: CameraEvent[],
   selectedCameraEventId: string;
 }
 
 export const initialState: State = {
-  cameraEvents: null,
+  cameraEvents: [],
   selectedCameraEventId: null,
 };
 
 export function reducer(state = initialState, action: CameraEventsActions): State {
   switch (action.type) {
     case CameraEventsActionTypes.AddCameraEvent:
-      return {
-        ...state, cameraEvents: {
-          ...state.cameraEvents,
-          [action.payload.cameraEvent.id]: action.payload.cameraEvent,
-        }
+      const cameraEvents = state.cameraEvents || [];
+      return { ...state, cameraEvents: [
+          ...cameraEvents,
+          action.payload.cameraEvent,
+        ]
       }
     case CameraEventsActionTypes.SetSelectedCameraEvent:
       return {
@@ -48,5 +48,5 @@ export const selectCameraEvents = createSelector(
 );
 export const selectSelectedCameraEvent = createSelector(
   cameraEventsFeatureSelector,
-  (state: State) => state.cameraEvents ? state.cameraEvents[state.selectedCameraEventId] : null,
+  (state: State) => state.cameraEvents ? state.cameraEvents.find(cameraEvent => state.selectedCameraEventId === cameraEvent.id) : null,
 );

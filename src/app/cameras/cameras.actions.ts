@@ -18,7 +18,7 @@ export class LoadCameras implements Action {
 
 export class LoadCamerasSuccess implements Action {
   readonly type = CamerasActionTypes.LoadCamerasSuccess;
-  constructor(public payload: { cameras: CamerasMap }) { }
+  constructor(public payload: { cameras: Camera[] }) { }
 }
 
 export class LoadCamerasFailure implements Action {

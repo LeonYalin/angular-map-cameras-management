@@ -7,7 +7,7 @@ import { CamerasMap } from './cameras.interface';
 export const camerasFeatureKey = 'cameras';
 
 export interface State {
-  cameras: CamerasMap;
+  cameras: Camera[];
   selectedCameraId: string;
 }
 
@@ -21,10 +21,10 @@ export function reducer(state = initialState, action: CamerasActions): State {
     case CamerasActionTypes.LoadCamerasSuccess:
       return { ...state, cameras: action.payload.cameras };
     case CamerasActionTypes.AddCamera:
-      return { ...state, cameras: {
+      return { ...state, cameras: [
           ...state.cameras,
-          [action.payload.camera.id]: action.payload.camera
-        }
+          action.payload.camera
+        ]
       };
     case CamerasActionTypes.SetSelectedCamera:
       return {
@@ -43,5 +43,5 @@ export const selectCameras = createSelector(
 );
 export const selectSelectedCamera = createSelector(
   camerasFeatureSelector,
-  (state: State) => state.cameras ? state.cameras[state.selectedCameraId] : null,
+  (state: State) => state.cameras ? state.cameras.find(camera => state.selectedCameraId === camera.id) : null,
 );
