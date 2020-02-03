@@ -40,7 +40,7 @@ export class AddCameraDialogComponent implements OnInit {
     if (!this.form.valid) {
       return this.cancel();
     }
-    const camera = new Camera(name, { lat, lon });
+    const camera = new Camera(name, lat, lon);
     this.dialogRef.close(camera);
   }
 

@@ -39,11 +39,11 @@ export class DashboardService {
     const lat = this.getRandomNum(MIN_LAT, MAX_LAT);
     const lon = this.getRandomNum(MIN_LON, MAX_LON);
     const type = this.getRandomType();
-    return new CameraEvent(camera.id, {lat, lon}, type);
+    return new CameraEvent(camera.id, lat, lon, type);
   }
 
   getRandomNum(min, max) {
-    return (Math.random() * (max - min) + min).toFixed(2);
+    return parseFloat((Math.random() * (max - min) + min).toFixed(2));
   }
 
   getRandomInt(min, max) {

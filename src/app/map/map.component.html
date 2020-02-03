@@ -1,14 +1,17 @@
 <div id="map">
-  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-    <agm-marker *ngFor="let item of markers$ | async | keyvalue"
-      (markerClick)="onMarkerClick(item.value)"
-      [latitude]="item.value.position.lat"
-      [longitude]="item.value.position.lon">
+  <ng-container *ngIf="mapOptions$ | async as options">
+    <agm-map [latitude]="options.lat" [longitude]="options.lon" [zoom]="options.zoom">
+      <agm-marker *ngFor="let item of markers$ | async | keyvalue"
+        (markerClick)="onMarkerClick(item.value)"
+        [latitude]="item.value.lat"
+        [longitude]="item.value.lon"
+        [animation]="getMarkerAnimation(item.value)">
 
-      <!-- <agm-info-window>
-        <strong>InfoWindow content</strong>
-      </agm-info-window> -->
+        <!-- <agm-info-window>
+          <strong>InfoWindow content</strong>
+        </agm-info-window> -->
 
-    </agm-marker>
-  </agm-map>
+      </agm-marker>
+    </agm-map>
+  </ng-container>
 </div>
