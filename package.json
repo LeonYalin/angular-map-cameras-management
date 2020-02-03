@@ -6,11 +6,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-prebuild": "npm install --only=dev",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build:prod"
   },
   "private": true,
   "dependencies": {
