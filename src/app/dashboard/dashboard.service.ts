@@ -28,7 +28,7 @@ export class DashboardService {
     this.interval = setInterval(() => {
       const cameraEvent = this.generateCameraEvent(camera);
       this.store.dispatch(new AddCameraEvent({ cameraEvent }));
-    }, 5000);
+    }, 10000);
   }
 
   stopTimer() {

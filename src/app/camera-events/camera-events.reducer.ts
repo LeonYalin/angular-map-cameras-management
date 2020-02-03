@@ -34,7 +34,7 @@ export function reducer(state = initialState, action: CameraEventsActions): Stat
     case CameraEventsActionTypes.ClearCameraEvents:
       return {
         ...state,
-        cameraEvents: null,
+        cameraEvents: [],
       }
     default:
       return state;

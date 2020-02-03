@@ -23,7 +23,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.store.pipe(select(fromCameras.selectCameras)),
     this.store.pipe(select(fromCameraEvents.selectCameraEvents))
   ).pipe(
-    switchMap(([cameras, cameraEvents]) => of({ ...cameras, ...cameraEvents }))
+    switchMap(([cameras, cameraEvents]) => of([...cameras, ...cameraEvents]))
   );
   selectedMarker$ = merge(
     this.store.pipe(select(fromCameras.selectSelectedCamera)),
@@ -57,7 +57,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   panTo(marker: MapMarker) {
     if (!marker) return;
-    this.mapOptions$.next({ lat: marker.lat, lon: marker.lon, zoom: 9 })
+    this.mapOptions$.next({ lat: marker.lat, lon: marker.lon, zoom: 9 });
   }
 
   getMarkerAnimation(marker: MapMarker): MarkerAnimations {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import CameraEvent from './models/camera-event';
 import { takeUntil } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { SetSelectedCameraEvent } from './camera-events.actions';
   styleUrls: ['./camera-events.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CameraEventsComponent implements OnInit {
+export class CameraEventsComponent implements OnInit, OnDestroy {
   cameraEvents$ = this.store.pipe(select(fromCameraEvents.selectCameraEvents));
   selectedCameraEvent$ = this.store.pipe(select(fromCameraEvents.selectSelectedCameraEvent));
   selectedCameraEventId: string;

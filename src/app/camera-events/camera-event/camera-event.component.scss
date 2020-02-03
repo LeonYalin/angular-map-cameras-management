@@ -1,6 +1,9 @@
 mat-list-item {
   cursor: pointer;
   background: white;
+  &:hover {
+    background: whitesmoke;
+  }
   &.selected {
     color:#ff4081;
   }
